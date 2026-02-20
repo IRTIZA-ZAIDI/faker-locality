@@ -1,20 +1,24 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[project]
+[tool.poetry]
 name = "faker-locality"
 version = "0.1.0"
-description = "Real city/province/country generator + exonyms, compatible with Faker"
-readme = "README.md"
-requires-python = ">=3.10"
-dependencies = ["faker"]
+description = "A package for generating fake locations with real locality data"
+authors = ["Your Name <your_email>"]
+license = "MIT"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/faker_locality"]
+[tool.poetry.dependencies]
+python = "^3.12"
+faker = "^40.4.0"
+# Pandas 2.2.2+ is the first version to fully support NumPy 2.0
+# But if you want to stay on NumPy 1.x for safety, use these:
+pandas = ">=2.2.2"
+numpy = "<2.0.0" 
+pyarrow = ">=15.0.0"
+pybind11 = "^2.12"
+openpyxl = "^3.1.5"
 
-[tool.hatch.build]
-include = [
-  "src/faker_locality/**",
-  "data/processed/**"
-]
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
